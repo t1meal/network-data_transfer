@@ -11,6 +11,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 
 public class Server {
     private final int port;
@@ -40,8 +42,6 @@ public class Server {
                                     new JsonDecoder(),
                                     new JsonEncoder(),
                                     new FirstServerHandler());
-                            //in -> LineBasedFrameDecoder -> JsonDecoder -> FirstServerHandler
-                            //JsonEncoder -> LengthFieldPrepender -> out
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
